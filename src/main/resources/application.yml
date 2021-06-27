@@ -13,8 +13,8 @@ spring:
       shutdown-timeout: 0
   datasource:
     url: jdbc:mysql://192.168.0.107:3306/meet_soul?characterEncoding=utf8&useSSL=false
-    username: root
-    password: zxjnmc0704
+    username: szx
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   mybatis:
     #开启驼峰命名法
