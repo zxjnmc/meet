@@ -1,16 +1,17 @@
 package com.szx.meet.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.time.LocalDateTime;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
@@ -21,16 +22,19 @@ import java.util.Date;
  * @since 2021-07-03
  */
 @Data
-@EqualsAndHashCode
-public class User implements Serializable{
+@EqualsAndHashCode(callSuper = false)
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * id
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 性别:0-未知 2-男 2-女
+     * 性别:0-未知 1-男 2-女
      */
     private Integer gender;
 
@@ -60,10 +64,10 @@ public class User implements Serializable{
     private String portrait;
 
     /**
-     * 是否启用 0-不可用 1-可用
+     * 是否删除 0-未删除 1-已删除
      */
     @TableLogic
-    private Integer isUse;
+    private Integer isDelete;
 
     /**
      * 用户类型
@@ -80,13 +84,21 @@ public class User implements Serializable{
      */
     private Integer updateId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date createTime;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date updateTime;
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
 
+    /**
+     * 乐观锁版本
+     */
     @Version
     private Integer version;
+
 
 }

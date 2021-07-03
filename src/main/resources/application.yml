@@ -17,31 +17,28 @@ spring:
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  mybatis-plus:
-    configuration:
-      map-underscore-to-camel-case: true
-      auto-mapping-behavior: full
-      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
 
-    # 实体扫描，多个package用逗号或者分号分隔
-    type-aliases-package: com.szx.meet.entity
-    #逻辑删除配置
-    global-config:
-      sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
-      logic-delete-value: 1
-      logic-not-delete-value: 0
+  # 实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.szx.meet.entity
 
-
-server:
-  port: 8080
-
-logging:
-  level:
-    root: info
-  file:
-    path:
+  #逻辑删除配置
+  global-config:
+    logic-delete-value: 1
+    logic-not-delete-value: 0
 
 weChatMiniProgram:
   appID: wx706e9bb22242b29b
   appSecret: 7ed6a610ba70387a13b4aa079f0844e2
+
+server:
+  port: 9000
+
+logging:
+  level:
+    com.szx.meet.mapper: debug

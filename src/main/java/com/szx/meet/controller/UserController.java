@@ -27,24 +27,24 @@ public class UserController {
         User user = new User();
         user.setName("szx");
         user.setGender(1);
-        userService.add(user);
+        userService.save(user);
         return ApiResult.success();
     }
 
     @PostMapping("/update/{userId}")
     public ApiResult<Void> update(@PathVariable("userId") Integer userId) {
         User user = userService.getById(userId);
-        user.setName("长孙");
+        user.setName("宋振兴");
+        user.setId(userId);
         userService.updateById(user);
         return ApiResult.success();
     }
 
     @DeleteMapping("/delete/{userId}")
-    public ApiResult<Void> delete(@PathVariable("userId") Integer userId) {
-        User user = new User();
-        user.setId(userId);
-        userService.removeById(user);
+    public ApiResult<Void> delete(@PathVariable Integer userId) {
+        userService.removeById(userId);
         return ApiResult.success();
     }
+
 }
 
