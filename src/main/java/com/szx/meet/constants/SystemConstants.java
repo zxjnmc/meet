@@ -1,4 +1,4 @@
-package com.szx.meet.consts;
+package com.szx.meet.constants;
 
 /**
  * @Author szx

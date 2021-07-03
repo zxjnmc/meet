@@ -1,11 +1,11 @@
 package com.szx.meet.aspect;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.szx.meet.annotation.AccessToken;
-import com.szx.meet.consts.BizErrorCode;
+import com.szx.meet.constants.BizErrorCode;
 import com.szx.meet.exception.BizException;
 import com.szx.meet.thread.ReqThreadLocal;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.web.context.request.RequestContextHolder;

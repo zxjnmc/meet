@@ -1,7 +1,7 @@
 package com.szx.meet.thread;
 
 import com.alibaba.fastjson.JSONObject;
-import com.szx.meet.consts.SystemConstants;
+import com.szx.meet.constants.SystemConstants;
 
 /**
  * @Author szx

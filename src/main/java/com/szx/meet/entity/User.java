@@ -1,15 +1,10 @@
 package com.szx.meet.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
-import java.io.Serializable;
-
+import com.szx.meet.base.BaseEntity;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -17,53 +12,64 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author szx
- * @since 2021-03-27
+ * @since 2021-07-03
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-public class User extends Model<User> {
+@EqualsAndHashCode(callSuper = true)
+public class User extends BaseEntity<User> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * 性别:0-未知 2-男 2-女
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Boolean gender;
+
     /**
-     * 名称
+     * 真实姓名
      */
     private String name;
+
+    /**
+     * 手机号
+     */
+    private String phone;
 
     /**
      * 密码
      */
     private String password;
-//    /**
-//     * 手机号
-//     */
-//    @TableField("phone_num")
-//    private String phoneNum;
-//    /**
-//     * 邮箱
-//     */
-//    private String email;
-//    /**
-//     * 更新日期
-//     */
-//    @TableField("update_time")
-//    private Date updateTime;
-//    /**
-//     * 创建日期
-//     */
-//    @TableField("create_time")
-//    private Date createTime;
-//
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
+    /**
+     * 出生日期
+     */
+    private LocalDateTime birthday;
+
+    /**
+     * 头像
+     */
+    private String portrait;
+
+    /**
+     * 是否启用 0-不可用 1-可用
+     */
+    @TableLogic
+    private Boolean isUse;
+
+    /**
+     * 用户类型
+     */
+    private Integer type;
+
+    /**
+     * 创建人id
+     */
+    private Integer createId;
+
+    /**
+     * 更新人id
+     */
+    private Integer updateId;
+
 
 }

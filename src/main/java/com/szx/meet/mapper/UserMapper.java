@@ -1,8 +1,7 @@
 package com.szx.meet.mapper;
 
 import com.szx.meet.entity.User;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -10,9 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author szx
- * @since 2021-03-27
+ * @since 2021-07-03
  */
-@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
 }

@@ -1,7 +1,7 @@
 package com.szx.meet.service;
 
 import com.szx.meet.entity.User;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.service.IService;
  * </p>
  *
  * @author szx
- * @since 2021-03-27
+ * @since 2021-07-03
  */
 public interface UserService extends IService<User> {
 

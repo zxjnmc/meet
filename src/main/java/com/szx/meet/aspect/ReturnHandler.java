@@ -1,7 +1,7 @@
 package com.szx.meet.aspect;
 
 import com.szx.meet.annotation.Data;
-import com.szx.meet.response.Result;
+import com.szx.meet.response.ApiResult;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -41,7 +41,7 @@ public class ReturnHandler {
         if (obj == null) {
             return;
         }
-        Class clz = Result.class;
+        Class clz = ApiResult.class;
         if (clz != obj.getClass()) {
             return;
         }

@@ -1,6 +1,6 @@
 package com.szx.meet.exception;
 
-import com.szx.meet.consts.IErrorCode;
+import com.szx.meet.constants.IErrorCode;
 
 /**
  * @Author szx

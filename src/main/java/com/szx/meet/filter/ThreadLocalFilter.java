@@ -2,7 +2,7 @@ package com.szx.meet.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.szx.meet.consts.RedisKeyConstants;
+import com.szx.meet.constants.RedisKeyConstants;
 import com.szx.meet.thread.ReqThreadLocal;
 import com.szx.meet.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
