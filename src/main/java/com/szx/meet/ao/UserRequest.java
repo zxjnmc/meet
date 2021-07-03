@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @Description 用户请求类
  */
 @Data
-public class UserAO implements Serializable {
+public class UserRequest implements Serializable {
 
     /**
      * 用户名称

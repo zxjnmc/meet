@@ -5,13 +5,13 @@ package com.szx.meet.consts;
  * @Date 2021/3/27 17:53
  * @Description
  */
-public enum BErrorCode implements IErrorCode{
+public enum BizErrorCode implements IErrorCode {
 
     OK(0, "success"),
 
-    SERVER_STOPING(33, "sever stoping"),
+    SERVER_STOPPING(33, "sever stopping"),
 
-    UNDEFINE_ERROR(101, "未定义的错误"),
+    UNDEFINED_ERROR(101, "未定义的错误"),
 
     ACCESS_TOKEN_ERROR(102, "accessToken错误"),
 
@@ -25,7 +25,7 @@ public enum BErrorCode implements IErrorCode{
 
     USER_IS_DISABLED(107, "当前账号已暂停使用,详情请联系客服咨询"),
 
-    OPTIMISTAIC_LOCK(201, "数据已被更新,请重新操作"),
+    OPTIMISTIC_LOCK(201, "数据已被更新,请重新操作"),
 
     RESUBMIT(202, "请勿重复提交"),
 
@@ -56,7 +56,7 @@ public enum BErrorCode implements IErrorCode{
     MS_CODE_VERIFY(412, "验证码已校验，请重新获取"),
     ;
 
-    private BErrorCode(Integer code, String message) {
+    private BizErrorCode(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

@@ -1,7 +1,7 @@
 package com.szx.meet.controller;
 
 import com.szx.meet.annotation.NotEmpty;
-import com.szx.meet.ao.UserAO;
+import com.szx.meet.ao.UserRequest;
 import com.szx.meet.response.Result;
 import com.szx.meet.service.OauthService;
 import com.szx.meet.vo.UserVO;
@@ -25,7 +25,8 @@ public class OauthController {
 
     @PostMapping("/login")
     @NotEmpty({"name", "password"})
-    public Result<UserVO> login(@RequestBody UserAO userAO) {
-        return Result.success(oauthService.login(userAO));
+    public Result<UserVO> login(@RequestBody UserRequest userRequest) {
+        return Result.success(oauthService.login(userRequest));
     }
+
 }

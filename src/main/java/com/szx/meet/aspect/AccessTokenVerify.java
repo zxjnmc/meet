@@ -3,7 +3,7 @@ package com.szx.meet.aspect;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.szx.meet.annotation.AccessToken;
-import com.szx.meet.consts.BErrorCode;
+import com.szx.meet.consts.BizErrorCode;
 import com.szx.meet.exception.BizException;
 import com.szx.meet.thread.ReqThreadLocal;
 import org.aspectj.lang.JoinPoint;
@@ -48,11 +48,11 @@ public class AccessTokenVerify {
         String accessToken = request.getHeader("access-token");
         //token为空
         if (StringUtils.isEmpty(accessToken)) {
-            throw new BizException(BErrorCode.ACCESS_TOKEN_ERROR);
+            throw new BizException(BizErrorCode.ACCESS_TOKEN_ERROR);
         }
         JSONObject user = ReqThreadLocal.getUser();
         if (user == null) {
-            throw new BizException(BErrorCode.ACCESS_TOKEN_ERROR);
+            throw new BizException(BizErrorCode.ACCESS_TOKEN_ERROR);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.szx.meet.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.szx.meet.consts.BErrorCode;
+import com.szx.meet.consts.BizErrorCode;
 import com.szx.meet.consts.IErrorCode;
 import lombok.Data;
 
@@ -48,7 +48,7 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> success() {
         Result<T> result = new Result<T>();
-        result.setErrorCode(BErrorCode.OK.getCode());
+        result.setErrorCode(BizErrorCode.OK.getCode());
         return result;
     }
 
@@ -66,8 +66,8 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> fail() {
         Result<T> result = new Result<T>();
-        result.setErrorCode(BErrorCode.UNDEFINE_ERROR.getCode());
-        result.setErrorMessage(BErrorCode.UNDEFINE_ERROR.getMessage());
+        result.setErrorCode(BizErrorCode.UNDEFINED_ERROR.getCode());
+        result.setErrorMessage(BizErrorCode.UNDEFINED_ERROR.getMessage());
         return result;
     }
 
@@ -92,7 +92,7 @@ public class Result<T> implements Serializable {
     }
 
     public boolean isSuccess() {
-        return BErrorCode.OK.getCode() == errorCode;
+        return BizErrorCode.OK.getCode() == errorCode;
     }
 
     /*@Override

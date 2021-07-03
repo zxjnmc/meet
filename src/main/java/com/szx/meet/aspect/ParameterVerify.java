@@ -12,7 +12,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -24,18 +23,20 @@ import java.util.*;
  * @Description 参数校验
  */
 public class ParameterVerify {
+
     private static final String NULL_MESSAGE = "Required parameter '%s' is null";
 
     private static final String EMPTY_MESSAGE = "Required parameter '%s' is empty";
 
-    private static final String LENGHT_MESSAGE = "Required parameter '%s' length limit %s,but now is %s";
+    private static final String LENGTH_MESSAGE = "Required parameter '%s' length limit %s,but now is %s";
 
     /**
-     * 检查参数
+     * 功能描述:检查参数
      *
-     * @param
-     * @author caiLinFeng
-     * @date 2018年3月6日
+     * @param joinPoint joinPoint
+     * @return void
+     * @author szx
+     * @date 2021/6/30 22:51
      */
     static void verify(JoinPoint joinPoint) throws IllegalAccessException {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
@@ -59,20 +60,18 @@ public class ParameterVerify {
         }
 
         // post,delete,put 请求体
-        JSONObject body = null;
+        JSONObject body;
 
         // 被Body注释的参数对象
-        Class<?> requestBodyedClazz = getClassByAnnotaion(method, RequestBody.class);
-        Object requestBodyedObject = null;
-        if (requestBodyedClazz != null) {
+        Class<?> requestBodyClazz = getClassByAnnotation(method);
+        Object requestBodyObject = null;
+        if (requestBodyClazz != null) {
             Object[] args = joinPoint.getArgs();
             body = new JSONObject();
             for (Object arg : args) {
-                if (arg != null && arg.getClass().equals(requestBodyedClazz)) {
-                    requestBodyedObject = arg;
-                    if (requestBodyedObject != null) {
-                        body.putAll((JSONObject) JSON.toJSON(requestBodyedObject));
-                    }
+                if (arg != null && arg.getClass().equals(requestBodyClazz)) {
+                    requestBodyObject = arg;
+                    body.putAll((JSONObject) JSON.toJSON(requestBodyObject));
                     break;
                 }
             }
@@ -80,12 +79,11 @@ public class ParameterVerify {
 
         // NotNull校验
         if (notNullValue != null) {
-            for (int i = 0; i < notNullValue.length; i++) {
-                String paraName = notNullValue[i];
-                Object paraValue = null;
+            for (String paraName : notNullValue) {
+                Object paraValue;
                 // 获取值
-                if (requestBodyedObject != null) {
-                    paraValue = getValueByField(requestBodyedObject, paraName);
+                if (requestBodyObject != null) {
+                    paraValue = getValueByField(requestBodyObject, paraName);
                 } else {
                     paraValue = request.getParameter(paraName);
                 }
@@ -101,14 +99,14 @@ public class ParameterVerify {
                 String paraName = notEmptyValue[i];
                 Object paraValue = null;
                 // 获取值
-                if (requestBodyedObject != null) {
-                    paraValue = getValueByField(requestBodyedObject, paraName);
+                if (requestBodyObject != null) {
+                    paraValue = getValueByField(requestBodyObject, paraName);
                 } else {
                     paraValue = request.getParameter(paraName);
                 }
 
                 int maxLen = Integer.MAX_VALUE;
-                if (notEmptyMaxLen != null && i < notEmptyMaxLen.length) {
+                if (i < notEmptyMaxLen.length) {
                     maxLen = notEmptyMaxLen[i];
                 }
                 checkNotEmpty(paraName, paraValue, maxLen);
@@ -118,11 +116,13 @@ public class ParameterVerify {
     }
 
     /**
-     * 获取对象某个属性的值
+     * 功能描述:获取对象某个属性的值
      *
-     * @param
-     * @author caiLinFeng
-     * @date 2018年2月12日
+     * @param object object
+     * @param field  field
+     * @return java.lang.Object
+     * @author szx
+     * @date 2021/6/30 22:50
      */
     private static Object getValueByField(Object object, String field)
             throws IllegalArgumentException, IllegalAccessException {
@@ -138,11 +138,12 @@ public class ParameterVerify {
     }
 
     /**
-     * 获取class所有成员属性
+     * 功能描述:获取class所有成员属性
      *
-     * @param
-     * @author caiLinFeng
-     * @date 2018年3月7日
+     * @param clazz clazz
+     * @return java.util.Set<java.lang.reflect.Field>
+     * @author szx
+     * @date 2021/6/30 22:50
      */
     private static Set<Field> getDeclaredFields(Class<?> clazz) {
         Set<Field> fieldSet = new HashSet<>();
@@ -154,16 +155,17 @@ public class ParameterVerify {
     }
 
     /**
-     * 获取被RequestBody注解的方法参数的class
+     * 功能描述:获取被RequestBody注解的方法参数的class
      *
-     * @param
-     * @author caiLinFeng
-     * @date 2018年2月12日
+     * @param method method
+     * @return java.lang.Class<?>
+     * @author szx
+     * @date 2021/6/30 22:50
      */
-    private static Class<?> getClassByAnnotaion(Method method, Class<? extends Annotation> clazz) {
+    private static Class<?> getClassByAnnotation(Method method) {
         Parameter[] params = method.getParameters();
         for (Parameter e : params) {
-            if (e.isAnnotationPresent(clazz)) {
+            if (e.isAnnotationPresent(RequestBody.class)) {
                 return e.getType();
             }
         }
@@ -171,11 +173,14 @@ public class ParameterVerify {
     }
 
     /**
-     * 判断是否非空及长度限制
+     * 功能描述:判断是否非空及长度限制
      *
-     * @param paraName
-     * @param paraValue
-     * @throws Exception
+     * @param paraName  paraName
+     * @param paraValue paraValue
+     * @param maxLen    maxLen
+     * @return void
+     * @author szx
+     * @date 2021/6/30 22:50
      */
     private static void checkNotEmpty(String paraName, Object paraValue, int maxLen) {
         if (paraValue == null) {
@@ -202,7 +207,7 @@ public class ParameterVerify {
         }
 
         if (paraLen > maxLen) {
-            throw new ParaException(String.format(LENGHT_MESSAGE, paraName, maxLen, paraLen));
+            throw new ParaException(String.format(LENGTH_MESSAGE, paraName, maxLen, paraLen));
         }
 
     }

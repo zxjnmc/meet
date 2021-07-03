@@ -29,8 +29,8 @@ public class ReturnHandler {
 
     /**
      * 处理返回值
-     * @param joinPoint
-     * @param obj
+     * @param joinPoint 编织点
+     * @param obj 对象
      * @throws NoSuchFieldException
      * @throws SecurityException
      * @throws IllegalArgumentException

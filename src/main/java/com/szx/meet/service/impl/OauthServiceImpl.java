@@ -1,8 +1,8 @@
 package com.szx.meet.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.szx.meet.ao.UserAO;
-import com.szx.meet.consts.BErrorCode;
+import com.szx.meet.ao.UserRequest;
+import com.szx.meet.consts.BizErrorCode;
 import com.szx.meet.consts.RedisKeyConstants;
 import com.szx.meet.entity.User;
 import com.szx.meet.exception.BizException;
@@ -31,10 +31,10 @@ public class OauthServiceImpl implements OauthService {
     private RedisUtils redisUtils;
 
     @Override
-    public UserVO login(UserAO userAO) {
+    public UserVO login(UserRequest userRequest) {
         UserVO userVO = new UserVO();
         User user = new User();
-        user.setName(userAO.getName());
+        user.setName(userRequest.getName());
         // 根据用户名查询用户
         User existUser = userMapper.selectOne(user);
         if (Objects.isNull(existUser)) {
@@ -42,8 +42,8 @@ public class OauthServiceImpl implements OauthService {
         } else {
             //如果用户存在
             //对比密码是否一致
-            if (!Objects.equals(existUser.getPassword(), userAO.getPassword())) {
-                throw new BizException(BErrorCode.ACCOUNT_ERROR);
+            if (!Objects.equals(existUser.getPassword(), userRequest.getPassword())) {
+                throw new BizException(BizErrorCode.ACCOUNT_ERROR);
             }
             //刷新token
             String loginKey = String.format(RedisKeyConstants.LOGIN_KEY, existUser.getId());
@@ -65,7 +65,7 @@ public class OauthServiceImpl implements OauthService {
         return userVO;
     }
 
-    public UserVO register(UserAO ao) {
+    public UserVO register(UserRequest ao) {
         return null;
     }
 
