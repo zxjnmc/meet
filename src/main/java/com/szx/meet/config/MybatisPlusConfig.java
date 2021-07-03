@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @Description
  */
 @Configuration
-@MapperScan("xom.szx.meet.mapper")
+@MapperScan("com.szx.meet.mapper")
 public class MybatisPlusConfig {
 
     @Bean
