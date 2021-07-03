@@ -2,6 +2,7 @@ package com.szx.meet.controller;
 
 
 import com.szx.meet.entity.User;
+import com.szx.meet.page.PageInfo;
 import com.szx.meet.response.ApiResult;
 import com.szx.meet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,13 @@ public class UserController {
         userService.removeById(userId);
         return ApiResult.success();
     }
+
+    @GetMapping("/list")
+    public ApiResult<PageInfo<User>> list() {
+        PageInfo<User> userPageInfo = userService.listByCondition();
+        return ApiResult.success(userPageInfo);
+    }
+
 
 }
 
