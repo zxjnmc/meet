@@ -17,21 +17,18 @@ import java.util.Date;
 public class ApiResult<T> implements Serializable {
     private final static long serialVersionUID = 1L;
     /**
-     * 错误码
+     * 返回值
      */
-    private int errorCode;
+    private int code;
     /**
-     * 错误提示
+     * 提示信息
      */
-    private String errorMessage;
+    private String msg;
     /**
-     * 数据
+     * 返回结果
      */
     private T data;
-    /**
-     * 总数
-     */
-    private Integer total;
+
     /**
      * 当前时间
      */
@@ -41,14 +38,10 @@ public class ApiResult<T> implements Serializable {
      * 当前时间戳
      */
     private Long currentTimestamp = System.currentTimeMillis();
-    /**
-     * 额外数据
-     */
-    //private Object attach;
 
     public static <T> ApiResult<T> success() {
-        ApiResult<T> apiResult = new ApiResult<T>();
-        apiResult.setErrorCode(BizErrorCode.OK.getCode());
+        ApiResult<T> apiResult = new ApiResult<>();
+        apiResult.setCode(BizErrorCode.OK.getCode());
         return apiResult;
     }
 
@@ -59,51 +52,42 @@ public class ApiResult<T> implements Serializable {
     }
 
     public static <T> ApiResult<T> success(T data, int total) {
-        ApiResult<T> apiResult = success(data);
-        apiResult.setTotal(total);
-        return apiResult;
+        return success(data);
     }
 
     public static <T> ApiResult<T> fail() {
-        ApiResult<T> apiResult = new ApiResult<T>();
-        apiResult.setErrorCode(BizErrorCode.UNDEFINED_ERROR.getCode());
-        apiResult.setErrorMessage(BizErrorCode.UNDEFINED_ERROR.getMessage());
+        ApiResult<T> apiResult = new ApiResult<>();
+        apiResult.setCode(BizErrorCode.UNDEFINED_ERROR.getCode());
+        apiResult.setMsg(BizErrorCode.UNDEFINED_ERROR.getMessage());
         return apiResult;
     }
 
-    public static <T> ApiResult<T> fail(String errorMessag) {
+    public static <T> ApiResult<T> fail(String msg) {
         ApiResult<T> apiResult = fail();
-        apiResult.setErrorMessage(errorMessag);
+        apiResult.setMsg(msg);
         return apiResult;
     }
 
-    public static <T> ApiResult<T> fail(IErrorCode errorCode) {
+    public static <T> ApiResult<T> fail(IErrorCode code) {
         ApiResult<T> apiResult = fail();
-        apiResult.setErrorCode(errorCode.getCode());
-        apiResult.setErrorMessage(errorCode.getMessage());
+        apiResult.setCode(code.getCode());
+        apiResult.setMsg(code.getMessage());
         return apiResult;
     }
 
-    public static <T> ApiResult<T> fail(IErrorCode errorCode, String description) {
+    public static <T> ApiResult<T> fail(IErrorCode code, String msg) {
         ApiResult<T> apiResult = fail();
-        apiResult.setErrorCode(errorCode.getCode());
-        apiResult.setErrorMessage(description);
+        apiResult.setCode(code.getCode());
+        apiResult.setMsg(msg);
         return apiResult;
     }
 
     public boolean isSuccess() {
-        return BizErrorCode.OK.getCode() == errorCode;
+        return BizErrorCode.OK.getCode() == code;
     }
-
-    /*@Override
-    public String toString() {
-        return "Result [errorCode=" + errorCode + ", errorMessage=" + errorMessage + ", data=" + data + ", total="
-                + total + ", attach=" + attach + "]";
-    }*/
 
     @Override
     public String toString() {
-        return "Result [errorCode=" + errorCode + ", errorMessage=" + errorMessage + ", data=" + data + ", total="
-                + total + "]";
+        return "Result [code = " + code + ", msg = " + msg + ", data = " + data + "]";
     }
 }
