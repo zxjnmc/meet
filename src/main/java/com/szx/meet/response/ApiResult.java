@@ -1,5 +1,7 @@
 package com.szx.meet.response;
 
+import com.alibaba.fastjson.annotation.JSONType;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.szx.meet.constants.BizErrorCode;
 import com.szx.meet.constants.IErrorCode;

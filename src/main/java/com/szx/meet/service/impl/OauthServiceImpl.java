@@ -23,7 +23,6 @@ public class OauthServiceImpl implements OauthService {
 
     @Override
     public UserResponse login(UserRequest userRequest) {
-        log.info("手机号密码登录");
         Integer channelType = userRequest.getChannelType();
         if (!Objects.equals(ChannelTypeEnum.PHONE_PWD.getValue(), channelType)) {
             log.info("登录方式有误！");
@@ -31,7 +30,11 @@ public class OauthServiceImpl implements OauthService {
         }
         String msg = EnumUtils.getByCode(channelType, ChannelTypeEnum.class);
         log.info("msg:{}", msg);
-        return null;
+        UserResponse userResponse = new UserResponse();
+        userResponse.setUserId(1);
+        userResponse.setChannel(channelType);
+        userResponse.setAccessToken("hjfjdnbf");
+        return userResponse;
     }
 
 }

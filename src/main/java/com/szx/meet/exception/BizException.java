@@ -8,42 +8,31 @@ import com.szx.meet.constants.IErrorCode;
  * @Description 业务异常类
  */
 public class BizException extends RuntimeException {
-    private int code = 101;
+    private int code;
 
     public BizException() {
-
     }
 
     public BizException(String message) {
         super(message);
     }
 
-    public BizException(int errorCode, String message) {
+    public BizException(int code, String message) {
         super(message);
-        this.code = errorCode;
+        this.code = code;
     }
 
     public static BizException getInstance(String message) {
         return new BizException(message);
     }
 
-    public static BizException getInstance(String message, Object... args) {
-        for (Object obj : args) {
-            if (obj == null) {
-                continue;
-            }
-            message = message.replaceFirst("\\{\\}", String.valueOf(obj));
-        }
-        return new BizException(message);
+    public BizException(IErrorCode code) {
+        this(code, code.getMessage());
     }
 
-    public BizException(IErrorCode errorCode) {
-        this(errorCode, errorCode.getMessage());
-    }
-
-    public BizException(IErrorCode errorCode, String message) {
+    public BizException(IErrorCode code, String message) {
         super(message);
-        this.code = errorCode.getCode();
+        this.code = code.getCode();
     }
 
     public IErrorCode getErrorCode() {
@@ -60,5 +49,4 @@ public class BizException extends RuntimeException {
             }
         };
     }
-
 }

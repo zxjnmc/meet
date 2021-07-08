@@ -30,7 +30,7 @@ public class AccessTokenVerify {
         boolean tokenRequired = false;
 
         Class<?> clazz = method.getDeclaringClass();
-        AccessToken accessTokenAnnotation = null;
+        AccessToken accessTokenAnnotation;
         // 先获取类注解
         if (clazz.isAnnotationPresent(AccessToken.class)) {
             accessTokenAnnotation = clazz.getAnnotation(AccessToken.class);

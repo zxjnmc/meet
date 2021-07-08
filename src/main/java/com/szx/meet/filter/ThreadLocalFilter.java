@@ -34,8 +34,6 @@ public class ThreadLocalFilter extends OncePerRequestFilter {
         try {
             handleToken(request);
             filterChain.doFilter(request, response);
-        } catch (Throwable e) {
-            throw e;
         } finally {
             ReqThreadLocal.removeAll();
         }
