@@ -18,7 +18,28 @@ public class UserRequest implements Serializable {
     private String name;
 
     /**
+     * 手机号
+     */
+    private String phoneNum;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 登录渠道 1-web端 2-小程序
+     */
+    private Integer channelType;
+
+    /**
      * 用户密码
      */
     private String password;
+
+    /**
+     * 验证码
+     */
+    private String verifyCode;
+
 }

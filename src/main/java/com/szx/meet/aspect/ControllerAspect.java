@@ -1,7 +1,6 @@
 package com.szx.meet.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -44,16 +43,16 @@ public class ControllerAspect {
     }
 
     @Before("pointcut()")
-    public void before(JoinPoint joinPoint) throws IllegalAccessException {
+    public void before(JoinPoint joinPoint) {
         // 校验token
         AccessTokenVerify.verify(joinPoint);
         // 校验请求参数
-        ParameterVerify.verify(joinPoint);
+//        ParameterVerify.verify(joinPoint);
     }
 
-    @AfterReturning(value = "pointcut()", returning = "obj")
-    public void afterReturning(JoinPoint joinPoint, Object obj) throws NoSuchFieldException, SecurityException,
-            IllegalArgumentException, IllegalAccessException {
-        ReturnHandler.handle(joinPoint, obj);
-    }
+//    @AfterReturning(value = "pointcut()", returning = "obj")
+//    public void afterReturning(JoinPoint joinPoint, Object obj) throws NoSuchFieldException, SecurityException,
+//            IllegalArgumentException, IllegalAccessException {
+//        ReturnHandler.handle(joinPoint, obj);
+//    }
 }

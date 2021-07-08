@@ -25,6 +25,8 @@ public enum BizErrorCode implements IErrorCode {
 
     USER_IS_DISABLED(107, "当前账号已暂停使用,详情请联系客服咨询"),
 
+    LOGIN_CHANNEL_ERROR(108, "登录渠道方式错误"),
+
     OPTIMISTIC_LOCK(201, "数据已被更新,请重新操作"),
 
     RESUBMIT(202, "请勿重复提交"),
