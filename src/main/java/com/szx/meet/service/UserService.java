@@ -29,11 +29,11 @@ public interface UserService extends IService<User> {
     /**
      * 功能描述:获取用户信息
      *
-     * @param id id
+     * @param
      * @return com.szx.meet.entity.User
      * @author szx
-     * @date 2021/7/10 01:10
+     * @date 2021/7/10 01:59
      */
-    User getById(Integer id);
+    User getById();
 
 }
