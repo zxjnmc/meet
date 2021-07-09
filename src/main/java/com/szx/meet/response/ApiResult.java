@@ -44,6 +44,7 @@ public class ApiResult<T> implements Serializable {
     public static <T> ApiResult<T> success() {
         ApiResult<T> apiResult = new ApiResult<>();
         apiResult.setCode(BizErrorCode.OK.getCode());
+        apiResult.setMsg(BizErrorCode.OK.getMessage());
         return apiResult;
     }
 

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.szx.meet.annotation.AccessToken;
 import com.szx.meet.constants.BizErrorCode;
 import com.szx.meet.exception.BizException;
-import com.szx.meet.thread.ReqThreadLocal;
+import com.szx.meet.thread.ThreadLocalRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -50,7 +50,7 @@ public class AccessTokenVerify {
         if (StringUtils.isEmpty(accessToken)) {
             throw new BizException(BizErrorCode.ACCESS_TOKEN_ERROR);
         }
-        JSONObject user = ReqThreadLocal.getUser();
+        JSONObject user = ThreadLocalRequest.getUser();
         if (user == null) {
             throw new BizException(BizErrorCode.ACCESS_TOKEN_ERROR);
         }

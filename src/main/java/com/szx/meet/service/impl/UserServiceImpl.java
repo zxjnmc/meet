@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.szx.meet.entity.User;
+import com.szx.meet.enums.LogicTypeEnum;
 import com.szx.meet.mapper.UserMapper;
 import com.szx.meet.page.PageInfo;
 import com.szx.meet.service.UserService;
@@ -39,4 +40,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         userPageInfo.setTotalRows(userIPage.getTotal());
         return userPageInfo;
     }
+
+    @Override
+    public User getByPhone(String phone) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(User::getPhone, phone);
+        return getOne(queryWrapper);
+    }
+
+    @Override
+    public User getById(Integer id) {
+        return userMapper.selectById(id);
+    }
+
+
 }

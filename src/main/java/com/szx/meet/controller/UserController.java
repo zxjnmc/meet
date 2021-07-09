@@ -1,6 +1,7 @@
 package com.szx.meet.controller;
 
 
+import com.szx.meet.annotation.AccessToken;
 import com.szx.meet.entity.User;
 import com.szx.meet.page.PageInfo;
 import com.szx.meet.response.ApiResult;
@@ -30,6 +31,12 @@ public class UserController {
         user.setGender(1);
         userService.save(user);
         return ApiResult.success();
+    }
+
+    @GetMapping("/get/{id}")
+    @AccessToken
+    public ApiResult<User> get(@PathVariable("id") Integer userId) {
+        return ApiResult.success(userService.getById(userId));
     }
 
     @PostMapping("/update/{userId}")

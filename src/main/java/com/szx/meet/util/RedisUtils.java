@@ -82,13 +82,12 @@ public class RedisUtils {
 
     /**
      * 存入key-value普通对象
-     *
-     * @param key     Redis键
+     *  @param key     Redis键
      * @param value   值
      * @param timeout 时间
-     * @param timeout 有效期，单位分钟
+     * @param seconds
      */
-    public void setValueExpire(final String key, final Object value, final long timeout) {
+    public void setValueExpire(final String key, final Object value, final long timeout, TimeUnit seconds) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.MINUTES);
     }
 

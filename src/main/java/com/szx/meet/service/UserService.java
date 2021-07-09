@@ -6,7 +6,7 @@ import com.szx.meet.page.PageInfo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author szx
@@ -15,5 +15,25 @@ import com.szx.meet.page.PageInfo;
 public interface UserService extends IService<User> {
 
     PageInfo<User> listByCondition();
+
+    /**
+     * 功能描述:根据手机号查询用户
+     *
+     * @param phone phone
+     * @return com.szx.meet.entity.User
+     * @author szx
+     * @date 2021/7/9 21:54
+     */
+    User getByPhone(String phone);
+
+    /**
+     * 功能描述:获取用户信息
+     *
+     * @param id id
+     * @return com.szx.meet.entity.User
+     * @author szx
+     * @date 2021/7/10 01:10
+     */
+    User getById(Integer id);
 
 }

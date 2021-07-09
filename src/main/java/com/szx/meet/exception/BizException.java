@@ -8,7 +8,7 @@ import com.szx.meet.constants.IErrorCode;
  * @Description 业务异常类
  */
 public class BizException extends RuntimeException {
-    private int code;
+    private int code = 200;
 
     public BizException() {
     }

@@ -20,12 +20,7 @@ public class UserRequest implements Serializable {
     /**
      * 手机号
      */
-    private String phoneNum;
-
-    /**
-     * 邮箱
-     */
-    private String email;
+    private String phone;
 
     /**
      * 登录渠道 1-web端 2-小程序

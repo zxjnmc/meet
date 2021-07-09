@@ -7,7 +7,7 @@ package com.szx.meet.constants;
  */
 public enum BizErrorCode implements IErrorCode {
 
-    OK(0, "success"),
+    OK(200, "success"),
 
     SERVER_STOPPING(33, "sever stopping"),
 
@@ -45,9 +45,9 @@ public enum BizErrorCode implements IErrorCode {
 
     MS_CODE_SAVE_ERROR(406, "验证码信息保存异常"),
 
-    MOBILE_NUMBER_ILLEGAL(407, "请输入正确的手机号"),
+    PHONE_ILLEGAL(407, "请输入正确的手机号"),
 
-    BUSINESS_LIMIT_CONTROL_MINUTE(408, "获取验证码过于频繁,请等待1分钟后再试"),
+    PHONE_NOT_NULL(408, "手机号不能为空"),
 
     BUSINESS_LIMIT_CONTROL_HOUR(409, "获取验证码过于频繁,请等待1小时后再试"),
 
