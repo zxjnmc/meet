@@ -21,39 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
-    @PostMapping("/add")
-    public ApiResult<Void> add() {
-        User user = new User();
-        user.setName("szx");
-        user.setGender(1);
-        userService.save(user);
-        return ApiResult.success();
-    }
-
-    @PostMapping("/update/{userId}")
-    public ApiResult<Void> update(@PathVariable("userId") Integer userId) {
-        User user = userService.getById(userId);
-        user.setName("宋振兴");
-        user.setId(userId);
-        userService.updateById(user);
-        return ApiResult.success();
-    }
-
-    @DeleteMapping("/delete/{userId}")
-    public ApiResult<Void> delete(@PathVariable Integer userId) {
-        userService.removeById(userId);
-        return ApiResult.success();
-    }
-
-    @GetMapping("/list")
-    public ApiResult<PageInfo<User>> list() {
-        PageInfo<User> userPageInfo = userService.listByCondition();
-        return ApiResult.success(userPageInfo);
-    }
-
 
 }
 

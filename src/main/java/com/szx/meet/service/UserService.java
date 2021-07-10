@@ -14,16 +14,13 @@ import com.szx.meet.page.PageInfo;
  */
 public interface UserService extends IService<User> {
 
-    PageInfo<User> listByCondition();
-
     /**
-     * 功能描述:根据手机号查询用户
+     * 功能描述:根据手机号获取用户信息
      *
      * @param phone phone
      * @return com.szx.meet.entity.User
      * @author szx
-     * @date 2021/7/9 21:54
+     * @date 2021/7/10 13:48
      */
     User getByPhone(String phone);
-
 }
