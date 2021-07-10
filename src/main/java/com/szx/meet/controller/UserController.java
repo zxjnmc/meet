@@ -33,12 +33,6 @@ public class UserController {
         return ApiResult.success();
     }
 
-    @GetMapping("/get")
-    @AccessToken
-    public ApiResult<User> get() {
-        return ApiResult.success(userService.getById());
-    }
-
     @PostMapping("/update/{userId}")
     public ApiResult<Void> update(@PathVariable("userId") Integer userId) {
         User user = userService.getById(userId);
