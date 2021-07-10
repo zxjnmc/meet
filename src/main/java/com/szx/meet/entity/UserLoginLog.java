@@ -42,6 +42,11 @@ public class UserLoginLog implements Serializable {
     private String browser;
 
     /**
+     * os
+     */
+    private String os;
+
+    /**
      * 登录类型
      */
     private Integer channelType;

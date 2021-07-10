@@ -9,7 +9,6 @@ import com.szx.meet.enums.LogicTypeEnum;
 import com.szx.meet.mapper.UserMapper;
 import com.szx.meet.page.PageInfo;
 import com.szx.meet.service.UserService;
-import com.szx.meet.thread.ThreadLocalRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,11 +47,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.eq(User::getPhone, phone);
         return getOne(queryWrapper);
     }
-
-    @Override
-    public User getById() {
-        return userMapper.selectById(ThreadLocalRequest.getUserId());
-    }
-
 
 }

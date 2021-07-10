@@ -1,7 +1,6 @@
 package com.szx.meet.vo;
 
 import lombok.Data;
-import org.apache.ibatis.javassist.runtime.Inner;
 
 /**
  * @Author szx
@@ -13,9 +12,11 @@ public class UserResponse {
 
     private Integer userId;
 
-    private Integer channel;
+    private Integer channelType;
 
     private String accessToken;
 
     private Integer isNew;
+
+    private String phone;
 }

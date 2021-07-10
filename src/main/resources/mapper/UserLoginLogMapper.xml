@@ -8,10 +8,10 @@
         <result column="user_id" property="userId" />
         <result column="ip" property="ip" />
         <result column="browser" property="browser" />
+        <result column="os" property="os" />
         <result column="channel_type" property="channelType" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
-        <result column="version" property="version" />
     </resultMap>
 
 </mapper>

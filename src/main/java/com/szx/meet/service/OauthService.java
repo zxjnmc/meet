@@ -2,8 +2,11 @@ package com.szx.meet.service;
 
 import com.szx.meet.ao.ModifyPasswordRequest;
 import com.szx.meet.ao.RetrievePasswordRequest;
+import com.szx.meet.ao.SendVerifyCodeRequest;
 import com.szx.meet.ao.UserRequest;
 import com.szx.meet.vo.UserResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author szx
@@ -20,7 +23,7 @@ public interface OauthService {
      * @author szx
      * @date 2021/7/4 11:34
      */
-    UserResponse login(UserRequest userRequest);
+    UserResponse login(UserRequest userRequest, HttpServletRequest request);
 
     /**
      * 功能描述:退出登录
@@ -40,7 +43,7 @@ public interface OauthService {
      * @author szx
      * @date 2021/7/9 20:57
      */
-    void mdifyPassword(ModifyPasswordRequest modifyPasswordRequest);
+    void modifyPassword(ModifyPasswordRequest modifyPasswordRequest);
 
     /**
      * 功能描述:找回密码
@@ -52,4 +55,13 @@ public interface OauthService {
      */
     void retrievePassword(RetrievePasswordRequest retrievePasswordRequest);
 
+    /**
+     * 功能描述:发送找回密码的验证码
+     *
+     * @param sendVerifyCodeRequest sendVerifyCodeRequest
+     * @return java.lang.String
+     * @author szx
+     * @date 2021/7/10 12:00
+     */
+    String sendVerifyCode(SendVerifyCodeRequest sendVerifyCodeRequest);
 }
