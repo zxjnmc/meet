@@ -26,14 +26,4 @@ public interface UserService extends IService<User> {
      */
     User getByPhone(String phone);
 
-    /**
-     * 功能描述:获取用户信息
-     *
-     * @param id id
-     * @return com.szx.meet.entity.User
-     * @author szx
-     * @date 2021/7/10 01:10
-     */
-    User getById(Integer id);
-
 }

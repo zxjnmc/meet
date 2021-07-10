@@ -27,7 +27,7 @@ public class AccessTokenVerify {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
-        boolean tokenRequired = false;
+        boolean tokenRequired = true;
 
         Class<?> clazz = method.getDeclaringClass();
         AccessToken accessTokenAnnotation;

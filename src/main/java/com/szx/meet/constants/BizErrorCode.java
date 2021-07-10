@@ -35,11 +35,11 @@ public enum BizErrorCode implements IErrorCode {
 
     FEIGN_SERVICE_ERROR(301, "远程服务异常"),
 
-    MS_CODE_ERROR(401, "验证码错误,请检查"),
+    VERIFY_CODE_ERROR(401, "验证码错误,请检查"),
 
     MS_CODE_USED(402, "验证码已使用,请重新获取"),
 
-    MS_CODE_OUT_OF_TIME(403, "验证码已过期,请重新获取"),
+    VERIFY_CODE_NOT_EXISTS(403, "验证码已过期或不存在,请重新获取"),
 
     MS_CODE_SEND_ERROR(405, "验证码发送异常,请重试"),
 
@@ -53,9 +53,10 @@ public enum BizErrorCode implements IErrorCode {
 
     BUSINESS_LIMIT_CONTROL_DAY(410, "获取验证码过于频繁,请等待24小时后再试"),
 
-    BLACK_KEY_CONTROL_LIMIT(411, "黑名单管控"),
-
-    MS_CODE_VERIFY(412, "验证码已校验，请重新获取"),
+    USER_NOT_EXISTS(411, "用户不存在"),
+    PASSWORD_ERROR(412, "密码错误"),
+    PASSWORD_SAME(413, "新旧密码相同"),
+    PARAM_ERROR(414, "参数校验失败"),
     ;
 
     private BizErrorCode(Integer code, String message) {

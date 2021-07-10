@@ -48,10 +48,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return getOne(queryWrapper);
     }
 
-    @Override
-    public User getById(Integer id) {
-        return userMapper.selectById(id);
-    }
-
-
 }

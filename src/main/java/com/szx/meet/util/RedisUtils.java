@@ -29,17 +29,6 @@ public class RedisUtils {
      *
      * @param key     Redis键
      * @param timeout 超时时间
-     * @return true=设置成功；false=设置失败
-     */
-    public boolean expire(final String key, final long timeout) {
-        return expire(key, timeout, TimeUnit.SECONDS);
-    }
-
-    /**
-     * 设置有效时间
-     *
-     * @param key     Redis键
-     * @param timeout 超时时间
      * @param unit    时间单位
      * @return true=设置成功；false=设置失败
      */
@@ -85,10 +74,10 @@ public class RedisUtils {
      *  @param key     Redis键
      * @param value   值
      * @param timeout 时间
-     * @param seconds
+     * @param timeUnit
      */
-    public void setValueExpire(final String key, final Object value, final long timeout, TimeUnit seconds) {
-        redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.MINUTES);
+    public void setValueExpire(final String key, final Object value, final long timeout, TimeUnit timeUnit) {
+        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
     }
 
 
@@ -180,7 +169,6 @@ public class RedisUtils {
      * @return Hash对象集合
      */
     public long hashDeleteKeys(final String key, final String hKey) {
-
         return redisTemplate.opsForHash().delete(key, hKey);
     }
 
