@@ -57,6 +57,9 @@ public enum BizErrorCode implements IErrorCode {
     PASSWORD_ERROR(412, "密码错误"),
     PASSWORD_SAME(413, "新旧密码相同"),
     PARAM_ERROR(414, "参数校验失败"),
+    PERSON_TAG_NOT_EXISTS(415, "个人标签不存在"),
+    PERSON_TAG_EXISTS(416, "个人标签已存在"),
+    PARENT_TAG_NOT_LINK_USER(417, "父级标签不可关联到用户"),
     ;
 
     private BizErrorCode(Integer code, String message) {

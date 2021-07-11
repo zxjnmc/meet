@@ -2,6 +2,7 @@ package com.szx.meet.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,11 +16,11 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author szx
- * @since 2021-07-10
+ * @since 2021-07-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserLoginLog implements Serializable {
+public class UserTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,27 +33,23 @@ public class UserLoginLog implements Serializable {
     private Integer userId;
 
     /**
-     * 登录ip
+     * 标签id
      */
-    private String ip;
+    private Integer tagId;
 
     /**
-     * 浏览器
+     * 是否关联
      */
-    private String browser;
+    private Integer enabled;
 
     /**
-     * os
+     * 是否删除 0-否 1-是
      */
-    private String os;
+    @TableLogic
+    private Integer isDelete;
 
     /**
-     * 登录类型
-     */
-    private Integer channelType;
-
-    /**
-     * 登录时间
+     * 创建时间
      */
     private LocalDateTime createTime;
 
@@ -66,5 +63,6 @@ public class UserLoginLog implements Serializable {
      */
     @Version
     private Integer version;
+
 
 }

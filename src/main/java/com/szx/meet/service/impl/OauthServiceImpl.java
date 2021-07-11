@@ -105,6 +105,7 @@ public class OauthServiceImpl implements OauthService {
             throw new BizException(BizErrorCode.PASSWORD_ERROR);
         }
         user.setPassword(EncryptionUtils.encryForSha(modifyPasswordRequest.getModifyPassword()));
+        user.setUpdateTime(LocalDateTimeUtils.getCurrentDateTime());
         userService.updateById(user);
         removeAccessToken(getLoginInfo(userId));
         log.info("用户[{}]密码修改完成", ThreadLocalRequest.getPhone());
