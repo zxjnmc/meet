@@ -5,7 +5,7 @@ package com.szx.meet.enums;
  * @Date 2021/7/17 19:19
  * @Description 用户关系类型枚举
  */
-public enum UserRelationShipTypeEnum implements BaseEnum {
+public enum UserRelationshipTypeEnum implements BaseEnum {
     //1-喜欢 2-超级喜欢 3-无感 4-拉黑
     LIKE(1, "喜欢"),
     SUPER_LIKE(2, "超级喜欢"),
@@ -14,7 +14,7 @@ public enum UserRelationShipTypeEnum implements BaseEnum {
 
     ;
 
-    UserRelationShipTypeEnum(Integer value, String msg) {
+    UserRelationshipTypeEnum(Integer value, String msg) {
         this.value = value;
         this.msg = msg;
     }

@@ -60,7 +60,9 @@ public enum BizErrorCode implements IErrorCode {
     PERSON_TAG_NOT_EXISTS(415, "个人标签不存在"),
     PERSON_TAG_EXISTS(416, "个人标签已存在"),
     PARENT_TAG_NOT_LINK_USER(417, "父级标签不可关联到用户"),
+    CAN_NOT_LIKE_YOUSELFT(418, "不能喜欢自己"),
     ;
+
 
     private BizErrorCode(Integer code, String message) {
         this.code = code;

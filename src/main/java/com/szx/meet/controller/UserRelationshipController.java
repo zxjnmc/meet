@@ -1,13 +1,16 @@
 package com.szx.meet.controller;
 
 
+import com.szx.meet.ao.LikeMeRequest;
+import com.szx.meet.ao.MyLikeRequest;
+import com.szx.meet.page.PageInfo;
 import com.szx.meet.response.ApiResult;
 import com.szx.meet.service.UserRelationshipService;
-import com.szx.meet.vo.UserRlationShipRequest;
+import com.szx.meet.vo.UserLikeMeResponse;
+import com.szx.meet.vo.UserMyLikeResponse;
+import com.szx.meet.vo.UserRelationshipRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -25,9 +28,19 @@ public class UserRelationshipController {
     private UserRelationshipService userRelationshipService;
 
     @PostMapping("/create-ship")
-    public ApiResult<Void> createShip(UserRlationShipRequest userRlationShipRequest) {
-        userRelationshipService.createShip(userRlationShipRequest);
+    public ApiResult<Void> createShip(@RequestBody UserRelationshipRequest userRelationshipRequest) {
+        userRelationshipService.createShip(userRelationshipRequest);
         return ApiResult.success();
+    }
+
+    @GetMapping("/like-me")
+    public ApiResult<PageInfo<UserLikeMeResponse>> likeMe(LikeMeRequest likeMeRequest) {
+        return ApiResult.success(userRelationshipService.likeMe(likeMeRequest));
+    }
+
+    @GetMapping("/my-like")
+    public ApiResult<PageInfo<UserMyLikeResponse>> myLike(MyLikeRequest myLikeRequest){
+        return ApiResult.success(userRelationshipService.myLike(myLikeRequest));
     }
 
 }
